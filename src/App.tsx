@@ -10,7 +10,8 @@ function App(): React.JSX.Element {
             <p>
                 Edit <code>src/App.tsx</code> and save. This page will
                 automatically reload. <br />
-                Liam Hillery, Fall 2024
+                Liam Hillery, Fall 2024 <br />
+                Hello World!
             </p>
         </div>
     );
