@@ -5,7 +5,7 @@
  * the number twice.
  */
 export function bookEndList(numbers: number[]): number[] {
-    return numbers;
+    return numbers.length > 0 ? [numbers[0], numbers[numbers.length - 1]] : [];
 }
 
 /**
@@ -13,7 +13,7 @@ export function bookEndList(numbers: number[]): number[] {
  * number has been tripled (multiplied by 3).
  */
 export function tripleNumbers(numbers: number[]): number[] {
-    return numbers;
+    return numbers.map((n: number): number => 3 * n);
 }
 
 /**
@@ -21,7 +21,7 @@ export function tripleNumbers(numbers: number[]): number[] {
  * the number cannot be parsed as an integer, convert it to 0 instead.
  */
 export function stringsToIntegers(numbers: string[]): number[] {
-    return [];
+    return numbers.map((val: string): number => parseInt(val) || 0);
 }
 
 /**
@@ -32,7 +32,10 @@ export function stringsToIntegers(numbers: string[]): number[] {
  */
 // Remember, you can write functions as lambdas too! They work exactly the same.
 export const removeDollars = (amounts: string[]): number[] => {
-    return [];
+    return amounts.map(
+        (str: string): number =>
+            (str[0] === "$" ? parseFloat(str.slice(1)) : parseFloat(str)) || 0,
+    );
 };
 
 /**
@@ -41,7 +44,11 @@ export const removeDollars = (amounts: string[]): number[] => {
  * in question marks ("?").
  */
 export const shoutIfExclaiming = (messages: string[]): string[] => {
-    return [];
+    return messages
+        .filter((str: string): boolean => !str.endsWith("?"))
+        .map((str: string): string =>
+            str.endsWith("!") ? str.toUpperCase() : str,
+        );
 };
 
 /**
@@ -49,7 +56,7 @@ export const shoutIfExclaiming = (messages: string[]): string[] => {
  * 4 letters long.
  */
 export function countShortWords(words: string[]): number {
-    return 0;
+    return words.filter((str: string): boolean => str.length < 4).length;
 }
 
 /**
@@ -58,7 +65,20 @@ export function countShortWords(words: string[]): number {
  * then return true.
  */
 export function allRGB(colors: string[]): boolean {
-    return false;
+    const permissableColors = ["red", "blue", "green"];
+    return colors.reduce(
+        (currentResult: boolean, color: string): boolean =>
+            currentResult && permissableColors.includes(color),
+        true,
+    );
+}
+
+// ill need this a couple times, so ill make it a function
+/**
+ * Consumes 2 numbers and returns their sum.
+ */
+function sumNumbers(tally: number, next: number): number {
+    return tally + next;
 }
 
 /**
@@ -69,7 +89,8 @@ export function allRGB(colors: string[]): boolean {
  * And the array [] would become "0=0".
  */
 export function makeMath(addends: number[]): string {
-    return "";
+    if (addends.length === 0) return "0=0";
+    return addends.reduce(sumNumbers, 0) + "=" + addends.join("+");
 }
 
 /**
@@ -81,6 +102,21 @@ export function makeMath(addends: number[]): string {
  * For instance, the array [1, 9, -5, 7] would become [1, 9, -5, 10, 7]
  * And the array [1, 9, 7] would become [1, 9, 7, 17]
  */
+
 export function injectPositive(values: number[]): number[] {
-    return [];
+    // get first negative index
+    let index: number = values.findIndex((n: number): boolean => n < 0);
+
+    // if only nonnegative numbers, append sum
+    if (index === -1) return [...values, values.reduce(sumNumbers, 0)];
+
+    /*
+        otherwise return all numbers before and including the negative number,
+        the sum of all numbers before the negative number, and the remainder of the array.
+    */
+    return [
+        ...values.slice(0, index + 1),
+        values.slice(0, index).reduce(sumNumbers, 0),
+        ...values.slice(index + 1),
+    ];
 }
