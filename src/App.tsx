@@ -17,38 +17,31 @@ function App(): React.JSX.Element {
             <header className="App-header">
                 UM COS420 with React Hooks and TypeScript
             </header>
-            <hr></hr>
-            <CheckAnswer expectedAnswer="42"></CheckAnswer>
-            <hr></hr>
-            <EditMode></EditMode>
-            <hr></hr>
-            <MultipleChoiceQuestion
-                options={["a", "b", "c"]}
-                expectedAnswer="b"
-            ></MultipleChoiceQuestion>
-            <hr></hr>
-            <CheckAnswer expectedAnswer="42"></CheckAnswer>
-            <hr></hr>
-            <EditMode></EditMode>
-            <hr></hr>
-            <MultipleChoiceQuestion
-                options={["a", "b", "c"]}
-                expectedAnswer="b"
-            ></MultipleChoiceQuestion>
-            <hr></hr>
-            {/* <DoubleHalf></DoubleHalf> */}
-            <hr></hr>
-            <ChooseTeam></ChooseTeam>
-            <hr></hr>
-            <ColoredBox></ColoredBox>
-            <hr></hr>
-            <Counter></Counter>
-            <hr />
-            <RevealAnswer></RevealAnswer>
-            <hr />
-            <TwoDice></TwoDice>
-            <hr />
-            <ChangeType></ChangeType>
+            <div className="App-body">
+                <hr></hr>
+                <CheckAnswer expectedAnswer="42"></CheckAnswer>
+                <hr></hr>
+                <EditMode></EditMode>
+                <hr></hr>
+                <MultipleChoiceQuestion
+                    options={["a", "b", "c"]}
+                    expectedAnswer="b"
+                ></MultipleChoiceQuestion>
+                <hr></hr>
+                <DoubleHalf></DoubleHalf>
+                <hr></hr>
+                <ChooseTeam></ChooseTeam>
+                <hr></hr>
+                <ColoredBox></ColoredBox>
+                <hr></hr>
+                <Counter></Counter>
+                <hr />
+                <RevealAnswer></RevealAnswer>
+                <hr />
+                <TwoDice></TwoDice>
+                <hr />
+                <ChangeType></ChangeType>
+            </div>
         </div>
     );
 }
